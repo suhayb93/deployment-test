@@ -27,7 +27,7 @@ prompt APPLICATION 97418 - Sample Database Application
 -- Application Export:
 --   Application:     97418
 --   Name:            Sample Database Application
---   Date and Time:   12:17 Tuesday December 27, 2016
+--   Date and Time:   12:36 Tuesday December 27, 2016
 --   Exported By:     SUHAYBDWAIKAT@GMAIL.COM
 --   Flashback:       0
 --   Export Type:     Component Export
@@ -65,7 +65,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'SUHAYBDWAIKAT@GMAIL.COM'
-,p_last_upd_yyyymmddhh24miss=>'20161227121550'
+,p_last_upd_yyyymmddhh24miss=>'20161227123527'
 );
 wwv_flow_api.create_report_region(
  p_id=>wwv_flow_api.id(963491481880490567)
@@ -153,6 +153,31 @@ wwv_flow_api.create_report_columns(
 ,p_column_display_sequence=>8
 ,p_column_heading=>'Deptno'
 ,p_heading_alignment=>'LEFT'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(963997416953980894)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(963491481880490567)
+,p_button_name=>'SUBMIT'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#:t-Button--iconRight'
+,p_button_template_id=>wwv_flow_api.id(42004751073004644742)
+,p_button_image_alt=>'Submit'
+,p_button_position=>'BOTTOM'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(964057152663990967)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'test'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'begin',
+'  htp.print(''<script>alert(''''hello'''')<script/>'');',
+'end;'))
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(963997416953980894)
 );
 end;
 /
